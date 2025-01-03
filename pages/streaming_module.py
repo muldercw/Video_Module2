@@ -34,7 +34,7 @@ def list_models():
 
 def list_community_models():
     return [
-        {"Name": "Bag Detector", "URL" : "https://clarifai.com/mulder/CustomBags/models/bag-detector-yf", "type": "User"},
+        {"Name": "Bag Detector", "URL" : "https://clarifai.com/mulder/CustomBags/models/bag-detector-yf", "type": "Community"},
         {"Name": "General-Image-Detection", "URL": "https://clarifai.com/clarifai/main/models/general-image-detection", "type": "Community"},
         {"Name": "Face Detection", "URL": "https://clarifai.com/clarifai/main/models/face-detection", "type": "Community"},
         {"Name": "Weapon Detection", "URL": "https://clarifai.com/clarifai/main/models/weapon-detection", "type": "Community"},
