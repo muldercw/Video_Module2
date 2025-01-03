@@ -95,7 +95,7 @@ userDataObject = auth.get_user_app_id_proto()
 st.title("Video Processing & Monitoring")
 json_responses = []
 
-video_option = st.radio("Choose Video Input:", ("Standard Video File URLs","BetaOption), horizontal=True)
+video_option = st.radio("Choose Video Input:", ("Standard Video File URLs","BetaOption"), horizontal=True)
 
 if video_option == "Standard Video File URLs":
     video_urls = st.text_area("Enter video URLs (one per line):", value="http://example.com/sample.mp4")
