@@ -14,6 +14,15 @@ from clarifai.client.app import App
 from clarifai.modules.css import ClarifaiStreamlitCSS
 from google.protobuf import json_format
 
+
+
+import hashlib
+
+def hash_url(url):
+    """Generate a short, unique hash for a URL."""
+    return hashlib.md5(url.encode()).hexdigest()[:8]
+
+
 def list_models():
     app_obj = App(user_id=userDataObject.user_id, app_id=userDataObject.app_id)
     all_models = list(app_obj.list_models())
@@ -114,7 +123,11 @@ if video_option == "Standard Video File URLs":
     available_models = list_models()
     url_list = [url.strip() for url in video_urls.split('\n') if url.strip()]
     model_options = [
-        next(model for model in available_models if model["Name"] == st.selectbox(f"Select a model for Video {idx + 1}:", [model["Name"] for model in available_models], key=f"model_{idx}_{url}"))
+        next(model for model in available_models if model["Name"] == st.selectbox(
+            f"Select a model for Video {idx + 1}:",
+            [model["Name"] for model in available_models],
+            key=f"model_{idx}_{hash_url(url)}"
+        ))
         for idx, url in enumerate(url_list)
     ]
 
