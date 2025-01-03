@@ -22,6 +22,14 @@ def list_models():
         model_url = f"https://clarifai.com/{userDataObject.user_id}/{userDataObject.app_id}/models/{model.id}"
         _umod = {"Name": model.id, "URL": model_url, "type": "User"}
         usermodels.append(_umod)
+    allapps = apps = list(User(user_id=userDataObject.user_id).list_apps())
+    for app_ in allapps:
+        app_obj = App(user_id=userDataObject.user_id, app_id=app_.id)
+        all_models = list(app_obj.list_models())
+        for model in all_models:
+            model_url = f"https://clarifai.com/{userDataObject.user_id}/{app_.id}/models/{model.id}"
+            _umod = {"Name": model.id, "URL": model_url, "type": "User"}
+            usermodels.append(_umod)
     return list_community_models() + usermodels
 
 def list_community_models():
@@ -95,10 +103,10 @@ userDataObject = auth.get_user_app_id_proto()
 st.title("Video Processing & Monitoring")
 json_responses = []
 
-video_option = st.radio("Choose Video Input:", ("Standard Video File URLs","BetaOption"), horizontal=True)
+video_option = st.radio("Choose Video Input:", ("Standard Video File URLs","Dev"), horizontal=True)
 
 if video_option == "Standard Video File URLs":
-    video_urls = st.text_area("Enter video URLs (one per line):", value="http://example.com/sample.mp4")
+    video_urls = st.text_area("Enter video URLs (one per line):", value="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4\nhttp://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4")
     frame_skip = st.slider("Select how many frames to skip:", min_value=1, max_value=120, value=30)
     det_threshold = st.slider("Select detection threshold:", min_value=0.01, max_value=1.00, value=0.5)
 
