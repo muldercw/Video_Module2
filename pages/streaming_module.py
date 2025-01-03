@@ -22,7 +22,7 @@ def list_models():
         model_url = f"https://clarifai.com/{userDataObject.user_id}/{userDataObject.app_id}/models/{model.id}"
         _umod = {"Name": model.id, "URL": model_url, "type": "User"}
         usermodels.append(_umod)
-    allapps = apps = list(User(user_id=userDataObject.user_id).list_apps())
+    allapps = list(User(user_id=userDataObject.user_id).list_apps())
     for app_ in allapps:
         app_obj = App(user_id=userDataObject.user_id, app_id=app_.id)
         all_models = list(app_obj.list_models())
