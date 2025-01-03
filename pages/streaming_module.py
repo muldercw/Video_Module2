@@ -114,9 +114,10 @@ if video_option == "Standard Video File URLs":
     available_models = list_models()
     url_list = [url.strip() for url in video_urls.split('\n') if url.strip()]
     model_options = [
-        next(model for model in available_models if model["Name"] == st.selectbox(f"Select a model for Video {idx + 1}:", [model["Name"] for model in available_models], key=f"model_{idx}"))
+        next(model for model in available_models if model["Name"] == st.selectbox(f"Select a model for Video {idx + 1}:", [model["Name"] for model in available_models], key=f"model_{idx}_{url}"))
         for idx, url in enumerate(url_list)
     ]
+
 
     stop_event = threading.Event()
 
