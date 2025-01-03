@@ -22,18 +22,19 @@ def list_models():
         model_url = f"https://clarifai.com/{userDataObject.user_id}/{userDataObject.app_id}/models/{model.id}"
         _umod = {"Name": model.id, "URL": model_url, "type": "User"}
         usermodels.append(_umod)
-    allapps = list(User(user_id=userDataObject.user_id).list_apps())
-    for app_ in allapps:
-        app_obj = App(user_id=userDataObject.user_id, app_id=app_.id)
-        all_models = list(app_obj.list_models())
-        for model in all_models:
-            model_url = f"https://clarifai.com/{userDataObject.user_id}/{app_.id}/models/{model.id}"
-            _umod = {"Name": model.id, "URL": model_url, "type": "User"}
-            usermodels.append(_umod)
+    # allapps = list(User(user_id=userDataObject.user_id).list_apps())
+    # for app_ in allapps:
+    #     app_obj = App(user_id=userDataObject.user_id, app_id=app_.id)
+    #     all_models = list(app_obj.list_models())
+    #     for model in all_models:
+    #         model_url = f"https://clarifai.com/{userDataObject.user_id}/{app_.id}/models/{model.id}"
+    #         _umod = {"Name": model.id, "URL": model_url, "type": "User"}
+    #         usermodels.append(_umod)
     return list_community_models() + usermodels
 
 def list_community_models():
     return [
+        {"Name": "Target Bag Detector", "URL" : "https://clarifai.com/mulder/bag-classifier/workflows/Target-Identifier?version=f87d2ccf02de4093a8ea8c2ce6e708c4", "type": "User"},
         {"Name": "General-Image-Detection", "URL": "https://clarifai.com/clarifai/main/models/general-image-detection", "type": "Community"},
         {"Name": "Face Detection", "URL": "https://clarifai.com/clarifai/main/models/face-detection", "type": "Community"},
         {"Name": "Weapon Detection", "URL": "https://clarifai.com/clarifai/main/models/weapon-detection", "type": "Community"},
