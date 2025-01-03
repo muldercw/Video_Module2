@@ -1,0 +1,8 @@
+[theme]
+primaryColor="#356dff"
+
+[ui]
+hideSidebarNav=true
+
+[client]
+showErrorDetails = true
